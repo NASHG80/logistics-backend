@@ -85,7 +85,11 @@ io.on("connection", (socket) => {
 });
 
 /* ================= MIDDLEWARE ================= */
-app.use(cors());
+app.use(cors({
+  origin: ["https://logistics-frontend-pw10qvqs8-nashs-projects-9d138422.vercel.app"],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Make io accessible to routes
