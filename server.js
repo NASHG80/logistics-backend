@@ -31,8 +31,9 @@ const server = http.createServer(app);
 /* ================= SOCKET.IO ================= */
 const io = new Server(server, {
   cors: {
-    origin: "*", // frontend URL in production
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -86,7 +87,7 @@ io.on("connection", (socket) => {
 
 /* ================= MIDDLEWARE ================= */
 app.use(cors({
-  origin: ["https://logistics-frontend-pw10qvqs8-nashs-projects-9d138422.vercel.app"],
+  origin: process.env.FRONTEND_URL || "http://localhost:5173",
   credentials: true
 }));
 
